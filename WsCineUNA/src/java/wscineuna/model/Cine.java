@@ -7,6 +7,9 @@ package wscineuna.model;
 
 import java.io.Serializable;
 import java.math.BigInteger;
+import java.time.Instant;
+import java.time.LocalDate;
+import java.time.ZoneId;
 import java.util.Date;
 import java.util.List;
 import javax.persistence.Basic;
@@ -85,7 +88,23 @@ public class Cine implements Serializable {
     public Cine() {
         
     }
-
+    public Cine(CineDto cine) {
+        this.cineId = cine.getCineId();
+        actualizar(cine);
+    }
+    public void actualizar(CineDto cine){
+        this.cineCorreo = cine.getCineCorreo();
+        Instant instant = cine.getCineHoraCierre().atDate(LocalDate.now()).
+        atZone(ZoneId.systemDefault()).toInstant();
+        Date horaC = Date.from(instant);
+        Instant instant2 = cine.getCineHoraInicio().atDate(LocalDate.now()).
+        atZone(ZoneId.systemDefault()).toInstant();
+        Date horaA = Date.from(instant2);
+        this.cineHoraCierre = horaC;
+        this.cineHoraInicio = horaA;
+        this.cineNombre = cine.getCineNombre();
+        this.cineTelefono = cine.getCineTelefono();
+    }
     public Cine(Long cineId) {
         this.cineId = cineId;
     }

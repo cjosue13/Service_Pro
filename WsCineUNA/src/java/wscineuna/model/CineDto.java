@@ -30,7 +30,7 @@ public class CineDto {
     private List<SalaDto> salasList;
     private List<UsuarioDto> usuariosList;
     
-    CineDto(Cine cine) {
+    public CineDto(Cine cine) {
        this.cineCorreo = cine.getCineCorreo();
        this.cineHoraCierre = cine.getCineHoraCierre().toInstant().atZone(ZoneId.systemDefault()).toLocalTime();
        this.cineHoraInicio = cine.getCineHoraInicio().toInstant().atZone(ZoneId.systemDefault()).toLocalTime();

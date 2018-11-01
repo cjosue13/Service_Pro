@@ -70,6 +70,7 @@ public class UsuarioController {
     public Response activarUsuario(@PathParam("usuario") String usuario) {
         try {
             Respuesta res = usuarioService.activarUsuario(usuario);
+            
             if (!res.getEstado()) {
                 return Response.status(res.getCodigoRespuesta().getValue()).entity(res.getMensaje()).build();
             }
